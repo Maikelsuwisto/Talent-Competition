@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Cookies from 'js-cookie';
 import { ChildSingleInput } from '../Form/SingleInput.jsx';
 import { FormErrors } from '../Form/FormErrors.jsx';
@@ -64,14 +64,14 @@ export default class EmployeeProfile extends React.Component {
                 let employerData = null;
                 if (res.employer) {
                     employerData = res.employer
-                    //console.log("employerData", employerData)
+                    console.log("employerData", employerData)
                 }
                 this.updateWithoutSave(employerData)
             }.bind(this),
             error: function (res) {
                 console.log(res.status)
             }
-        }) 
+        })
         this.init()
     }
 
@@ -153,7 +153,7 @@ export default class EmployeeProfile extends React.Component {
 
         var cookies = Cookies.get('talentAuthToken');
         $.ajax({
-            url: 'http://localhost:60290/profile/profile/saveEmployerProfile',
+            url: 'http://localhost:51689/profile/profile/saveEmployerProfile',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -206,7 +206,7 @@ export default class EmployeeProfile extends React.Component {
                                                 componentId='companyContact'
                                             />
                                         </FormItemWrapper>
-                                     
+
                                         <FormItemWrapper
                                             title='Display profile'
                                             tooltip='Toggle company profile visibility in the employer feed.'
