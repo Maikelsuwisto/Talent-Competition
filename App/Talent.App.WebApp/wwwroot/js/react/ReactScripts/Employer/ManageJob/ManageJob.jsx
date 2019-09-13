@@ -57,11 +57,11 @@ export default class ManageJob extends React.Component {
     };
 
     loadData() {
-        //var link = 'http://localhost:51689/listing/listing/getSortedEmployerJobs';
+        //var link = 'https://talentservice.azurewebsites.net/listing/listing/getSortedEmployerJobs';
         var cookies = Cookies.get('talentAuthToken');
         // your ajax call and other logic goes here
         $.ajax({
-            url: 'http://localhost:51689/listing/listing/getEmployerJobs',
+            url: 'https://talentservice.azurewebsites.net/listing/listing/getEmployerJobs',
             headers: {
                 'Authorization': 'Bearer ' + cookies,
                 'Content-Type': 'application/json'
@@ -139,9 +139,9 @@ export default class ManageJob extends React.Component {
                             <Dropdown.Item onClick={this.sortDescending}>Older First</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
-                    <Grid columns={1} padded>
+                    <Grid columns={2} padded className='jobGrid'>
                         {loadJobs ? currentJobs.map(jobs =>
-                            <Grid.Column key={jobs.id}>
+                            <Grid.Column stretched key={jobs.id}>
                                 <Segment>
                                     <h3>{jobs.title}</h3> <br />
                                     {jobs.location.city}, {jobs.location.country} <br />
@@ -152,7 +152,8 @@ export default class ManageJob extends React.Component {
                                         <Button basic color='blue' icon='edit' content='Edit' />
                                         <Button basic color='blue' icon='clipboard outline' content='Copy' />
                                     </Button.Group>
-                                </Segment> </Grid.Column>) :
+                                </Segment>
+                            </Grid.Column>) :
                             <Segment>
                                 <Grid.Column>No Jobs Found</Grid.Column>
                             </Segment>
